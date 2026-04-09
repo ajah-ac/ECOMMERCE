@@ -1,8 +1,9 @@
 import { useState } from "react"
-import { Navigate,useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import useFetchData from "./features/useFetchData"
 import { useAuthContext } from "./features/AuthenContext"
 interface User {
+    name:string,
     email: string,
     password: string
 }
