@@ -1,20 +1,29 @@
-import React from 'react'
 import useFetchData from '../features/useFetchData';
 import Navbar from './Navbar';
-interface CategoType{
-  id:number,name:string;image:string
+import { useNavigate,  } from 'react-router-dom';
+
+export interface CategoType{
+  id:number,
+  name:string;
+  image:string
 }
+
 const Categories = () => {
-  const {data}=useFetchData<CategoType[]>('https://api.escuelajs.co/api/v1/categories')
+const navigate=useNavigate()
+  const {data,loading}=useFetchData<CategoType[]>('https://api.escuelajs.co/api/v1/categories')
+   if(loading) {return <p>Loading...</p>}
+
   if(!data) {return <p>No data found</p>}
+ 
   return (<>
     <Navbar/>
-    <ul className='flex flex-wrap space-y-2 space-x-4 justify-center  m-auto max-w-full'>
+    <ul  
+    className='flex flex-wrap h justify-center gap-6 p-4'>
 {data.map((category:CategoType)=><li
-className='w-64 h-64'
- 
+ className='w-64 h-64 bg-white shadow-md rounded-lg pb-4 px-4 pt-1'
+onClick={()=>navigate(`/categories/${category.id}`)}
 key={category.id}>
-<img src={category.image} className='w-full h-full' alt="image here" />
+<img src={category.image} alt="" className='h-48 w-full object-cover mb-2'/>
 <h3>{category.name}</h3>
 
 </li>)}
