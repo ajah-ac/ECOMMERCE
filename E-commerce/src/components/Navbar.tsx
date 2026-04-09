@@ -1,10 +1,7 @@
-import React from 'react'
 import { useNavigate, NavLink } from 'react-router-dom'
 import { useAuthContext } from '../features/AuthenContext'
 const Navbar = () => {
-    type User = {
-        name: string, id: number
-    }
+   
     const navigate = useNavigate()
     const { logout } = useAuthContext()
     const user = localStorage.getItem('user')
