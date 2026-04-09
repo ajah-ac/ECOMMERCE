@@ -7,7 +7,8 @@ interface User{
 interface ContextType{
     user:User |null;
     login:(user:User)=>void;
-logout:()=>void
+logout:()=>void;
+loading:boolean;
 }
 const AuthContext=createContext<ContextType |undefined>(undefined)
 type Children={
@@ -15,9 +16,11 @@ type Children={
 }
 const AuthenProvider = ({children}:Children) => {
     const [user,setUser]=useState<User|null>(null)
+      const [loading, setLoading] = useState(true);
 useEffect(()=>{
 const stored=localStorage.getItem('user');
-if(stored)setUser(JSON.parse(stored))
+if(stored)setUser(JSON.parse(stored));
+setLoading(false)
 },[])
 const login=(userData:User)=>{
     setUser(userData)
@@ -28,7 +31,7 @@ const logout=()=>{
     localStorage.removeItem('user')
 }
   return (
-   <AuthContext.Provider value={{user,login,logout}}>
+   <AuthContext.Provider value={{user,login,logout,loading}}>
     {children}
    </AuthContext.Provider>
   )
