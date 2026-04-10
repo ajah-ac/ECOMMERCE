@@ -10,21 +10,20 @@ interface User {
 const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [notfound,setNotFound]=useState(false)
     const navigate=useNavigate()
     const {login}=useAuthContext()
     const { data } = useFetchData<User[]>('https://api.escuelajs.co/api/v1/users')
     function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
         e.preventDefault()
-        
         if (!data) { return }
         const findUser = data.find(user => user.email === email && user.password === password)
-        if (!findUser) {
-            return 
-     }
-
+      if(!findUser){
+setNotFound(true)
+      }
         else{
            login(findUser);
-navigate('/categories', {replace:true})}
+navigate('/home', {replace:true})}
 
     }
 
@@ -41,6 +40,7 @@ navigate('/categories', {replace:true})}
                     placeholder="Enter password" required />
                 <button type='submit'
                     className="border-blue-950 p-2 pl-8 pr-8 bg-blue-200 rounded-2xl shadow-md">Login</button>
+                    {notfound && <p className="text-red-500">Invalid Credentials</p>}
             </form>
         </div>
     )
