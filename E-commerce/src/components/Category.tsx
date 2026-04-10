@@ -1,7 +1,6 @@
 import useFetchData from '../features/useFetchData'
 import { useParams } from 'react-router-dom'
-import Navbar from './Navbar'
-
+import { useNavigate } from 'react-router-dom'
 type Products={
 id:string,
 title:string;
@@ -16,6 +15,7 @@ category:{
 
 function Category() {
     const {id}=useParams()
+    const navigate=useNavigate()
       const {data,loading}=useFetchData<Products[] | null>('https://api.escuelajs.co/api/v1/products')
     
     if(loading){
@@ -30,17 +30,17 @@ const filter=data.filter(product=>product.category.id===+id)
 
       return (
         <>
-<Navbar />
   
 
       <h2 className="text-xl font-bold text-center my-4">
         Products in Category {id}
       </h2>
-
+{filter.length<=0 && <p>no products found</p>}
       <div className="flex flex-wrap justify-center gap-6 p-4">
         {filter.map((product) => (
           <div
             key={product.id}
+            onClick={()=>navigate(`/products/${product.id}`)}
             className="w-64 bg-white shadow-md rounded-lg p-4"
           >
             <img
