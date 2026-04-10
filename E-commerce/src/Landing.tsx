@@ -9,7 +9,7 @@ const Landing = () => {
 navigate('/login',{replace:true})
   }
   if(user){
-    return <Navigate to='/categories' replace/>
+    return <Navigate to='/home' replace/>
   }
   return (
     

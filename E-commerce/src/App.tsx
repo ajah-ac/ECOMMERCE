@@ -13,6 +13,7 @@ import Protected from './Protected'
 import Category from './components/Category'
 import Home from './components/Home'
 import Applayout from './components/Applayout'
+import Products from './components/Products'
  const router=createBrowserRouter(createRoutesFromElements(
  <>
   <Route path='/' element={<Landing/>}></Route>
@@ -22,6 +23,7 @@ import Applayout from './components/Applayout'
    <Route path='/home' element={<Home/>}/>
   <Route path='/categories' element={<Categories/>}/>
     <Route path='categories/:id' element={<Category/>}/>
+    <Route path='/products/:id' element={<Products/>}/>
 
   </Route>
 
