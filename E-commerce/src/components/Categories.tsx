@@ -1,5 +1,4 @@
 import useFetchData from '../features/useFetchData';
-import Navbar from './Navbar';
 import { useNavigate,  } from 'react-router-dom';
 
 export interface CategoType{
@@ -16,7 +15,6 @@ const navigate=useNavigate()
   if(!data) {return <p>No data found</p>}
  
   return (<>
-    <Navbar/>
     <ul  
     className='flex flex-wrap h justify-center gap-6 p-4'>
 {data.map((category:CategoType)=><li

@@ -12,10 +12,10 @@ const Navbar = () => {
         navigate('/login', { replace: true })
     }
     return (
-        <div className='flex shadow-md mb-10 justify-between px-8 py-4 text-lg font-bold'>
+        <div className='flex shadow-md sticky z-10 bg-white top-0 justify-between px-8 py-5 text-lg font-bold'>
             <h1>Hi {userInfor.name}</h1>
             <nav className='flex justify-evenly gap-30'>
-
+                <NavLink to='/home'> Home</NavLink>
                 <NavLink to='/categories'> Categories</NavLink>
                 <button 
                 className='text-red-500'
