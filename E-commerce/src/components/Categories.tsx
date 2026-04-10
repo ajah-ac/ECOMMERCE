@@ -22,7 +22,7 @@ const navigate=useNavigate()
 onClick={()=>navigate(`/categories/${category.id}`)}
 key={category.id}>
 <img src={category.image} alt="" className='h-48 w-full object-cover mb-2'/>
-<h3>{category.name}</h3>
+<h3>{category.name.slice(0,20)}</h3>
 
 </li>)}
 
